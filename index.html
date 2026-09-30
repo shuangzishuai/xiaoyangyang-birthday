@@ -108,6 +108,9 @@ body.started .st{opacity:1;transform:none}
 .ph{position:absolute;inset:0}
 .ph svg{width:100%;height:100%}
 .ph-img{width:100%;height:100%;object-fit:cover;display:block}
+.slot-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:var(--card);border:2px dashed rgba(74,59,51,.28);border-radius:4px}
+.slot-empty svg{width:34px;height:34px;color:#C9988C}
+.slot-empty p{font-size:12.5px;color:var(--ink-soft)}
 .photo-img{display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .photo-frame.has-photo .ph{display:none}
 .photo-frame.has-photo .photo-img{display:block}
@@ -200,6 +203,9 @@ body.music-on .fab-icon{display:none}
   .section{padding:64px 18px}
   .hero-content{padding:80px 18px 130px}
   .hero-sticker{right:3%;bottom:11%;width:92px}
+}
+@media (min-width:720px){
+  .photos-grid{grid-template-columns:repeat(3,1fr)}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
@@ -307,15 +313,13 @@ body.music-on .fab-icon{display:none}
         <span class="tape"></span>
         <div class="photo-slot">
           <div class="ph"><img class="ph-img" src="assets/yier-hug.jpg" alt="一二和布布贴贴"></div>
-          <img class="photo-img" alt="我们的合照">
         </div>
-        <figcaption>贴贴 · 我们的位子</figcaption>
+        <figcaption>贴贴 · 一二和布布</figcaption>
       </figure>
       <figure class="photo-frame reveal" style="--tilt:1.8deg">
         <span class="tape"></span>
         <div class="photo-slot">
           <div class="ph"><img class="ph-img" src="assets/strawberry.jpg" alt="布布和一二吃草莓"></div>
-          <img class="photo-img" alt="女主角的照片">
         </div>
         <figcaption>草莓很甜 · 像我们</figcaption>
       </figure>
@@ -323,12 +327,44 @@ body.music-on .fab-icon{display:none}
         <span class="tape"></span>
         <div class="photo-slot">
           <div class="ph"><img class="ph-img" src="assets/holding-hands.jpg" alt="一二牵着布布"></div>
-          <img class="photo-img" alt="Lucky的照片">
         </div>
         <figcaption>异地也要手牵手</figcaption>
       </figure>
+      <figure class="photo-frame photo-frame--swap reveal" style="--tilt:2deg">
+        <span class="tape"></span>
+        <div class="photo-slot">
+          <div class="ph slot-empty">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
+            <p>合照位 · 等你们</p>
+          </div>
+          <img class="photo-img" alt="我们的合照一">
+        </div>
+        <figcaption>我们的第一张合照</figcaption>
+      </figure>
+      <figure class="photo-frame photo-frame--swap reveal" style="--tilt:-1.2deg">
+        <span class="tape"></span>
+        <div class="photo-slot">
+          <div class="ph slot-empty">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
+            <p>合照位 · 等你们</p>
+          </div>
+          <img class="photo-img" alt="我们的合照二">
+        </div>
+        <figcaption>我们的小日常</figcaption>
+      </figure>
+      <figure class="photo-frame photo-frame--swap reveal" style="--tilt:1.5deg">
+        <span class="tape"></span>
+        <div class="photo-slot">
+          <div class="ph slot-empty">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
+            <p>合照位 · 等你们</p>
+          </div>
+          <img class="photo-img" alt="我们的合照三">
+        </div>
+        <figcaption>我们的以后</figcaption>
+      </figure>
     </div>
-    <p class="photos-note reveal">把合照命名为 photo1.jpg、photo2.jpg、photo3.jpg 放进 photos 文件夹，这里会自动换成你们。</p>
+    <p class="photos-note reveal">下面三格是你们的专属合照位：把照片命名为 photo1.jpg、photo2.jpg、photo3.jpg 放进 photos 文件夹（或直接发给我），就会自动展示。一二和布布会一直留在上面陪你们。</p>
   </section>
 
   <!-- 可爱补给站 -->
@@ -748,7 +784,7 @@ document.getElementById("relightBtn").addEventListener("click", function () {
 });
 
 /* ---------- 合照自动替换 ---------- */
-document.querySelectorAll(".photo-frame").forEach(function (frame, i) {
+document.querySelectorAll(".photo-frame--swap").forEach(function (frame, i) {
   var img = frame.querySelector(".photo-img");
   var exts = ["jpg", "jpeg", "png", "webp"];
   (function probe(k) {
